@@ -2,10 +2,7 @@ package project.io.ranker.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @ToString
@@ -27,6 +24,10 @@ public class ItemModel {
         this.name = name;
         this.imgUrl = imgUrl;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kollections_items_id")
+    private KollectionModel kollectionItems;
 
     @Override
     public boolean equals(Object o) {
