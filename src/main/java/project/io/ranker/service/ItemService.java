@@ -38,7 +38,7 @@ public class ItemService {
     }
     //update item
     @Transactional
-    public ItemDTO updateblog(Long id, ItemDTO itemDTO) {
+    public ItemDTO updateItem(Long id, ItemDTO itemDTO) {
 
         if (itemRepositories.findById(id).isPresent()) {
             ItemModel prevItem = itemRepositories.findById(id).get();
