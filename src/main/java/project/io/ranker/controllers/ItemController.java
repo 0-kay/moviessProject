@@ -11,14 +11,14 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path= "/items")
+@RequestMapping(path= "/api/items")
 public class ItemController {
 
     public final ItemService itemService;
 
     //get all items
     @CrossOrigin
-    @GetMapping(path = "/allItems")//show all posts //anyone can view
+    @GetMapping(path = "/")//show all posts //anyone can view
     public ResponseEntity<List<ItemDTO>> AllPosts(){
         return new ResponseEntity<>(itemService.showallItems(), HttpStatus.OK);
     }

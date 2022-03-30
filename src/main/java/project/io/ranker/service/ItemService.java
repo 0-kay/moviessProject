@@ -1,8 +1,10 @@
 package project.io.ranker.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import project.io.ranker.Repositories.ItemRepositories;
 import project.io.ranker.dto.ItemDTO;
 import project.io.ranker.models.ItemModel;
@@ -27,14 +29,15 @@ public class ItemService {
     //delete item
     @Transactional
     public void DeleteItem(Long Id){
-        itemRepositories.deleteById(Id);
+            itemRepositories.deleteById(Id);
     }
 
     //get all items
     @Transactional
     public List<ItemDTO> showallItems() {
         List<ItemModel> item = itemRepositories.findAll();
-        return item.stream().map(this::mapFromItemtoDTO).collect(toList());
+        return item.stream().map(this::mapFromItemtoDTO)
+                .collect(toList());
     }
     //update item
     @Transactional
@@ -49,12 +52,12 @@ public class ItemService {
 
             return new ItemDTO(updatedItem.getId(),updatedItem.getName(),updatedItem.getImgUrl(), updatedItem.getPoints());
         } else {
-            return  null;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     //get 2 random items
-
+//    public List<>
     private ItemModel mapFromDtoToItem(ItemDTO itemDTO) {
         ItemModel itemModel= new ItemModel();
         itemModel.setId(itemDTO.getId());
