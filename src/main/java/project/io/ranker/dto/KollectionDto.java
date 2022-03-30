@@ -1,4 +1,4 @@
-package project.io.ranker.models;
+package project.io.ranker.dto;
 
 import lombok.Getter;
 import lombok.Setter;
