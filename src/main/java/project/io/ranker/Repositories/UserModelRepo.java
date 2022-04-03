@@ -8,7 +8,7 @@ import project.io.ranker.models.UserModel;
 import java.util.Optional;
 
 @Repository
-public interface UserModelRepo extends JpaRepository<UserDetailsImpl,Long> {
+public interface UserModelRepo extends JpaRepository<UserModel,Long> {
     Optional<UserModel> findByUsername(String username);
     Boolean existsByUsername(String username);
 }
