@@ -1,19 +1,10 @@
 package project.io.ranker.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.*;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -30,8 +21,6 @@ public class UserModel{
 
     @NotBlank
     private String password;
-
-
 
     @ManyToMany( fetch = FetchType.LAZY )
     @JoinTable(name = "user_roles",
