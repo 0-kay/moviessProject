@@ -20,5 +20,5 @@ public class  RoleModel  {
     private Long id;
 
     @Enumerated
-    private EnumRole enumRole;
+    private EnumRole name;
 }
