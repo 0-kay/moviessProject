@@ -23,6 +23,12 @@ public class ItemController {
         return new ResponseEntity<>(itemService.showallItems(), HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @GetMapping(path = "/kollection-items/{id}")
+    public ResponseEntity<List<ItemDTO>> kollectionItems(@PathVariable Long id) {
+        return new ResponseEntity<>(itemService.getKollectionItems(id), HttpStatus.OK);
+    }
+
     //update item
     @CrossOrigin
     @PutMapping(path = "/update/{id}")
