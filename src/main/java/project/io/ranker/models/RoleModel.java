@@ -1,27 +1,24 @@
 package project.io.ranker.models;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
 
+
+
+@Data
 @Entity
-@Getter
-@Setter
 @ToString
 @RequiredArgsConstructor
-public class RoleModel {
+public class  RoleModel  {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue( strategy = IDENTITY)
     private Long id;
 
-    @Enumerated(STRING)
-    @Column( length = 20)
-    private EnumRole name;
-
+    @Enumerated
+    private EnumRole enumRole;
 }

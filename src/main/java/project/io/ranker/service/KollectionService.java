@@ -6,10 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import project.io.ranker.Repositories.KollectionRepo;
 import project.io.ranker.models.ItemModel;
-import project.io.ranker.models.KollectionDto;
+import project.io.ranker.dto.KollectionDto;
 import project.io.ranker.models.KollectionModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

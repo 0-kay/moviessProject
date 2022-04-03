@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import project.io.ranker.models.KollectionDto;
+import project.io.ranker.dto.KollectionDto;
 import project.io.ranker.service.KollectionService;
 
 import javax.validation.Valid;
