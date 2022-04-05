@@ -13,7 +13,7 @@ import java.util.*;
 public class UserModel{
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private Long Id;
 
     @NotBlank
@@ -29,10 +29,8 @@ public class UserModel{
     @ToString.Exclude
     private Set<RoleModel> roles = new HashSet<>();
 
-
-
-
-
-
-
+    public UserModel(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

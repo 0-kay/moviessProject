@@ -26,7 +26,7 @@ public class UserDetailsImpl implements UserDetails {
 
     public static UserDetailsImpl  build(UserModel userModel) {
         Collection<? extends GrantedAuthority> authorities = userModel.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getEnumRole().name()))
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
 
         return new UserDetailsImpl(

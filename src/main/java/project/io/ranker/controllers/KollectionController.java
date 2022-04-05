@@ -39,4 +39,10 @@ public class KollectionController {
         kollectionService.update(id, kollectionDto);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteKollection (@PathVariable Long id) {
+        kollectionService.delete(id);
+        return ResponseEntity.ok().build();
+    }
 }

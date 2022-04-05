@@ -32,6 +32,11 @@ public class KollectionService {
     }
 
     public Long create(KollectionDto kollectionDto) {
+
+        if (kollectionRepo.existsByName(kollectionDto.getName())) {
+            return 413l;
+        }
+
         KollectionModel kollectionModel = new KollectionModel();
         mapToEntity(kollectionDto, kollectionModel);
         return kollectionRepo.save(kollectionModel).getId();
@@ -44,9 +49,9 @@ public class KollectionService {
         kollectionRepo.save(kollectionModel);
     }
 
-
-
     public void delete(final Long id) {
+        KollectionModel kollectionModel = kollectionRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         kollectionRepo.deleteById(id);
     }
 
