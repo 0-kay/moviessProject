@@ -3,6 +3,7 @@ package project.io.ranker.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import project.io.ranker.dto.ItemDTO;
 import project.io.ranker.service.ItemService;
@@ -17,21 +18,22 @@ public class ItemController {
     public final ItemService itemService;
 
     //get all items
-    @CrossOrigin
+//    @CrossOrigin
     @GetMapping(path = "/")//show all posts //anyone can view
     public ResponseEntity<List<ItemDTO>> AllPosts(){
         return new ResponseEntity<>(itemService.showallItems(), HttpStatus.OK);
     }
 
-    @CrossOrigin
+//    @CrossOrigin
     @GetMapping(path = "/kollection-items/{id}")
     public ResponseEntity<List<ItemDTO>> kollectionItems(@PathVariable Long id) {
         return new ResponseEntity<>(itemService.getKollectionItems(id), HttpStatus.OK);
     }
 
     //update item
-    @CrossOrigin
+//    @CrossOrigin
     @PutMapping(path = "/update/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> UpdateItem(
             @PathVariable Long id,
             @RequestBody ItemDTO itemDTO){
@@ -40,15 +42,17 @@ public class ItemController {
     }
 
     //delete item
-    @CrossOrigin
+//    @CrossOrigin
     @DeleteMapping(path = "/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> DeleteItem(@PathVariable Long id){
         itemService.DeleteItem(id);
         return new ResponseEntity<>("item Deleted",HttpStatus.OK);
     }
     //create item
-    @CrossOrigin
+//    @CrossOrigin
     @PostMapping(path = "/create-item")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> CreateItem(@RequestBody ItemDTO itemDTO){
         itemService.CreateItem(itemDTO);
         return new ResponseEntity<>("item added!",HttpStatus.OK);
