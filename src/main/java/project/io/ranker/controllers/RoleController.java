@@ -12,27 +12,27 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/roles")
+@RequestMapping(value = "/api/roles")
 @RequiredArgsConstructor
 public class RoleController {
 
     private final RoleService roleService;
 
     @GetMapping
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<RoleDTO>> getAllRoles() {
         return ResponseEntity.ok(roleService.findAll());
     }
 
     @PostMapping
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Long> createRole(
             @RequestBody @Valid RoleDTO roleDTO) {
         return new ResponseEntity<>(roleService.create(roleDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> updateRole(@PathVariable Long id,
                                                    @RequestBody @Valid RoleDTO roleDTO) {
         roleService.update(id, roleDTO);
@@ -40,7 +40,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/{id}")
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteRole(@PathVariable Long id) {
         roleService.delete(id);
         return ResponseEntity.noContent().build();
