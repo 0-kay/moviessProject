@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/kollections")
 @RequiredArgsConstructor
-public class KollectionController {
+public class KollectionController implements SecuredRestController{
 
     private final KollectionService kollectionService;
 

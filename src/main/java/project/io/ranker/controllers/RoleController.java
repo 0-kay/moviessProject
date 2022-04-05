@@ -1,5 +1,6 @@
 package project.io.ranker.controllers;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/roles")
 @RequiredArgsConstructor
-public class RoleController {
+public class RoleController implements SecuredRestController{
 
     private final RoleService roleService;
 

@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path= "/api/items")
-public class ItemController {
+public class ItemController implements SecuredRestController {
 
     public final ItemService itemService;
 
