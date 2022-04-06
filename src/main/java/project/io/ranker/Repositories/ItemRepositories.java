@@ -15,5 +15,4 @@ import java.util.Optional;
 public interface ItemRepositories extends JpaRepository<ItemModel,Long> {
     List<ItemModel> findByKollectionItems(KollectionModel kollectionItems);
 
-    Collection<Object> findByKollectionItems(Optional<KollectionModel> byId);
 }
