@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Optional;
 
 @ToString
 @Data
@@ -28,6 +29,8 @@ public class ItemModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kollections_items_id")
     private KollectionModel kollectionItems;
+
+
 
     @Override
     public boolean equals(Object o) {

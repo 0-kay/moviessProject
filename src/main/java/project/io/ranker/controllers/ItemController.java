@@ -5,9 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.io.ranker.dto.ItemDTO;
+import project.io.ranker.models.ItemModel;
 import project.io.ranker.service.ItemService;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @AllArgsConstructor
 @RestController
@@ -52,6 +55,12 @@ public class ItemController {
     public ResponseEntity<String> CreateItem(@RequestBody ItemDTO itemDTO){
         itemService.CreateItem(itemDTO);
         return new ResponseEntity<>("item added!",HttpStatus.OK);
+    }
+    //random item
+    @CrossOrigin
+    @GetMapping(path = "/{id}/vote")
+    public ResponseEntity<List<Optional<ItemDTO>>> voterandom(@PathVariable Long id){
+        return new ResponseEntity<>( itemService.getRandomItem(id), HttpStatus.OK);
     }
 
 }

@@ -11,7 +11,8 @@ import project.io.ranker.dto.ItemDTO;
 import project.io.ranker.models.ItemModel;
 import project.io.ranker.models.KollectionModel;
 
-import java.util.List;
+import javax.persistence.EntityManager;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -21,6 +22,7 @@ public class ItemService {
 
     private final ItemRepositories itemRepositories;
     private final KollectionRepo kollectionRepo;
+    private EntityManager entityManager;
 
     //create item
     @Transactional
@@ -59,6 +61,7 @@ public class ItemService {
     }
 
     // get all items under a certain kollection
+    @Transactional
     public List<ItemDTO> getKollectionItems(Long id) {
         KollectionModel kollectionModel = kollectionRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -68,6 +71,28 @@ public class ItemService {
     }
 
     //get 2 random items
+    @Transactional
+    public List<Optional<ItemDTO>> getRandomItem(Long id) {
+        List<Optional<ItemDTO>> randos = new ArrayList<>();
+//        Query countQuery = entityManager.createNativeQuery("select count(*) from item_model");
+//         countQuery.setParameter("1", id);
+//        long count = (Long)countQuery.getSingleResult();
+        int count = (int) getKollectionItems(id).stream().count();
+        List<ItemDTO> items = new ArrayList<>(getKollectionItems(id));
+        Random random = new Random();
+
+        int number = random.nextInt(count);
+        int snumber =random.nextInt(count);
+        while(snumber==number){
+            snumber =random.nextInt(count);
+        }
+
+        randos.add(Optional.ofNullable(items.get(number)));
+        randos.add(Optional.ofNullable(items.get(snumber)));
+
+        return randos;
+    }
+
 //    public List<>
     private ItemModel mapFromDtoToItem(ItemDTO itemDTO) {
         ItemModel itemModel = new ItemModel();
@@ -94,5 +119,8 @@ public class ItemService {
         itemDTO.setKollectionItems(itemModel.getKollectionItems() == null ? null : itemModel.getKollectionItems().getId());
         return itemDTO;
     }
+
+
+
 
 }
