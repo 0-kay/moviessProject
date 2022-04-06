@@ -74,9 +74,6 @@ public class ItemService {
     @Transactional
     public List<Optional<ItemDTO>> getRandomItem(Long id) {
         List<Optional<ItemDTO>> randos = new ArrayList<>();
-//        Query countQuery = entityManager.createNativeQuery("select count(*) from item_model");
-//         countQuery.setParameter("1", id);
-//        long count = (Long)countQuery.getSingleResult();
         int count = (int) getKollectionItems(id).stream().count();
         List<ItemDTO> items = new ArrayList<>(getKollectionItems(id));
         Random random = new Random();
