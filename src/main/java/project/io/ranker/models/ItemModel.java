@@ -21,11 +21,6 @@ public class ItemModel {
     private String imgUrl;
     private Integer Points;
 
-    public ItemModel(String name, String imgUrl) {
-        this.name = name;
-        this.imgUrl = imgUrl;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kollections_items_id")
     private KollectionModel kollectionItems;
