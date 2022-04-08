@@ -13,7 +13,7 @@ import java.util.Set;
 public class KollectionModel {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private Long Id;
 
     private String name;

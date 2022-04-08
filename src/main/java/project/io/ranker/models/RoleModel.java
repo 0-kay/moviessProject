@@ -6,19 +6,20 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 
 import static javax.persistence.EnumType.STRING;
+import static javax.persistence.GenerationType.AUTO;
 import static javax.persistence.GenerationType.IDENTITY;
 
-
-
-@Data
 @Entity
+@Getter
+@Setter
 @ToString
 @RequiredArgsConstructor
 public class  RoleModel  {
+
     @Id
-    @GeneratedValue( strategy = IDENTITY)
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private Long id;
 
-    @Enumerated
+    @Enumerated(STRING)
     private EnumRole name;
 }
