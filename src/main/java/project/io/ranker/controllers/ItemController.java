@@ -59,7 +59,7 @@ public class ItemController implements SecuredRestController {
         return new ResponseEntity<>("item added!",HttpStatus.OK);
     }
     //random item
-    @CrossOrigin
+//    @CrossOrigin
     @GetMapping(path = "/{id}/vote")
     public ResponseEntity<List<Optional<ItemDTO>>> voterandom(@PathVariable Long id){
         return new ResponseEntity<>( itemService.getRandomItem(id), HttpStatus.OK);

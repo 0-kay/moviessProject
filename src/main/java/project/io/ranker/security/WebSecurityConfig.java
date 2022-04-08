@@ -49,6 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/items/").permitAll()
+                .antMatchers("/api/items/{id}/vote").permitAll()
                 .antMatchers("/api/items/kollection-items/**").permitAll()
                 .antMatchers("/api/kollections/").permitAll()
                 .antMatchers("/api/kollections/get/**").permitAll()
